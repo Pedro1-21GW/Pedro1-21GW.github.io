@@ -324,14 +324,16 @@ async function transcribe(wav) {
 // ---------- language model ----------
 let llm, llmKey;
 async function loadLLM() {
-  llmKey = $("llm-select").value;
-  const m = LLMS[llmKey];
   const adapter = navigator.gpu && await navigator.gpu.requestAdapter().catch(() => null);
+  // Without WebGPU: the LFM2 exports (4- and 8-bit) use GatherBlockQuantized, which the CPU runtime lacks,
+  // while Qwen2.5's 8-bit export uses standard integer ops, so the CPU path always uses that.
+  llmKey = adapter ? $("llm-select").value : "qwen25-05b";
+  const m = LLMS[llmKey];
   const device = adapter ? "webgpu" : "wasm";
-  const dtype = adapter && adapter.features.has("shader-f16") ? "q4f16" : "q4";
+  const dtype = !adapter ? "q8" : adapter.features.has("shader-f16") ? "q4f16" : "q4";
   $("st-llm").querySelector(".dev").textContent = adapter ? "GPU" : "CPU (no WebGPU)";
   $("llm-name").textContent = m.name;
-  $("llm-det").textContent = `${dtype} · ~${m.mb} MB`;
+  $("llm-det").textContent = dtype === "q8" ? "8-bit · 512 MB (CPU fallback)" : `${dtype} · ~${m.mb} MB`;
   const files = {};
   llm = await pipeline("text-generation", m.id, {
     device, dtype,
@@ -645,6 +647,7 @@ async function load() {
     `STT encoder on ${asr.device} · LLM on ${llmInfo.device} (${llmInfo.dtype}) · TTS on ${ttsInfo.device} (${ttsInfo.dtype})`;
   $("btn-talk").disabled = false; $("btn-test").disabled = false;
   $("btn-load").textContent = "Models loaded";
+  if (asr.device === "wasm") $("env-note").textContent += " · No WebGPU in this browser, so everything runs on the CPU: expect 10–20 s per reply.";
   setStatus("idle", "Ready");
   return { loadMs, warmMs, isolated: self.crossOriginIsolated, threads: ort.env.wasm.numThreads, asr: asr.device, llm: llmInfo, tts: ttsInfo };
 }
