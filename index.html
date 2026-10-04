@@ -1,89 +1,113 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pedro Benevenuto Valadares</title>
   <meta name="description" content="Research Data Scientist in speech and voice AI. Real-time voice agents, speech model fine-tuning, and inference optimization.">
+  <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fbfbf9;
-      --text: #1c1c1a;
-      --muted: #6b6b66;
-      --line: #e6e5e0;
-      --accent: #c2410c;
-      --tag-bg: #f1efe9;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141413;
-        --text: #ececea;
-        --muted: #9b9b95;
-        --line: #2a2a28;
-        --accent: #fb923c;
-        --tag-bg: #232321;
-      }
+      --bg: #0a0807;
+      --text: #efe8e1;
+      --soft: #d8d2cc;
+      --muted: #9b9088;
+      --line: rgba(255, 170, 100, .14);
+      --accent: #ff9d4d;
+      --tag-bg: rgba(255, 157, 77, .09);
+      --card: rgba(255, 255, 255, .02);
+      --sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "Geist Mono", ui-monospace, monospace;
     }
     * { box-sizing: border-box; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
+      margin: 0; min-height: 100vh; color: var(--text); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(1100px 520px at 50% -10%, rgba(255, 135, 45, .28), transparent 65%),
+        radial-gradient(900px 420px at 50% 115%, rgba(255, 90, 40, .10), transparent 70%), var(--bg);
+      background-attachment: fixed;
     }
-    main { max-width: 720px; margin: 0 auto; padding: 64px 20px 96px; }
+    main { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 72px 16px 120px; counter-reset: ch; }
     a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; }
     a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
-    header h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
-    header .role { color: var(--muted); margin: 4px 0 20px; }
-    header p { margin: 0 0 20px; }
-    .links { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 0; list-style: none; font-size: 0.95rem; }
+    header h1 { font: 400 3.6rem/1.02 var(--sans); letter-spacing: -0.04em; color: #fff3e6; margin: 24px 0 0; }
+    header .role { font: 400 .74rem/1.7 var(--mono); text-transform: uppercase; letter-spacing: .26em; color: var(--accent); margin: 14px 0 26px; }
+    header p { font-size: 1.08rem; font-weight: 300; color: var(--soft); max-width: 640px; margin: 0 0 20px; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 0; margin: 0; list-style: none; font-size: .95rem; }
 
-    section { margin-top: 56px; }
-    h2 {
-      font: 400 0.8rem/1 "JetBrains Mono", ui-monospace, monospace;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--muted); margin: 0 0 20px;
-      padding-bottom: 10px; border-bottom: 1px solid var(--line);
-    }
-    .item { margin-bottom: 24px; }
+    /* live spectrogram of synthetic speech */
+    .spectro { margin: 0 0 28px; }
+    #spectrogram { display: block; width: 100%; height: 150px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    section { margin-top: 84px; }
+    h2 { counter-increment: ch; font: 400 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .32em; color: var(--text);
+         margin: 0 0 22px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    h2::before { content: "CH" counter(ch) "  ·  "; color: var(--accent); }
+
+    .item { margin-bottom: 26px; }
     .item:last-child { margin-bottom: 0; }
     .item-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
-    .item h3 { font-size: 1rem; font-weight: 600; margin: 0; }
-    .meta { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
-    .sub { color: var(--muted); font-size: 0.95rem; margin: 2px 0 0; }
+    .item h3 { font: 500 1.02rem/1.4 var(--sans); margin: 0; }
+    .meta { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+    .sub { color: var(--muted); font-size: .95rem; margin: 2px 0 0; }
     .item p { margin: 6px 0 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 0; list-style: none; }
-    .tags li { background: var(--tag-bg); font-size: 0.8rem; padding: 2px 8px; border-radius: 4px; color: var(--muted); }
+    .tags li { background: var(--tag-bg); color: var(--muted); font-size: .78rem; padding: 2px 9px; border-radius: 999px; }
+
+    .repos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .repo { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); min-width: 0; transition: border-color .2s, box-shadow .2s; }
+    .repo:hover { border-color: var(--accent); box-shadow: 0 0 28px rgba(255, 157, 77, .18); }
+    .repo .name { font: 500 1rem/1.3 var(--sans); overflow-wrap: anywhere; }
+    .repo .desc { color: var(--muted); font-size: .9rem; margin: 0; flex: 1; }
+    .repo .foot { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .8rem; color: var(--muted); align-items: center; }
+    .repo .lang::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 6px; }
+    .repo .go { display: flex; flex-wrap: wrap; gap: 4px 14px; font: .74rem/1.6 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .repo .go a { color: var(--accent); text-decoration: none; }
+    .repo .go a::after { content: " →"; }
+    .repo .go a:hover { color: #fff3e6; }
+    .repos-note { font-size: .8rem; color: var(--muted); margin-top: 10px; }
 
     .pubs { list-style: none; padding: 0; margin: 0; }
     .pubs li { margin-bottom: 18px; }
     .pubs .title { font-weight: 500; }
-    .pubs .authors, .pubs .venue { color: var(--muted); font-size: 0.92rem; }
-    .pubs .me { color: var(--text); font-weight: 500; }
+    .pubs .authors, .pubs .venue { color: var(--muted); font-size: .92rem; }
+    .pubs .me { color: var(--text); font-weight: 600; }
 
-    footer { margin-top: 72px; color: var(--muted); font-size: 0.85rem; }
+    footer { margin-top: 80px; color: var(--muted); font-size: .85rem; }
 
-    @media (max-width: 560px) {
-      main { padding-top: 40px; }
+    /* film grain */
+    .grain { position: fixed; inset: -50%; z-index: 2; pointer-events: none; opacity: .07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 1.2s steps(4) infinite; }
+    @keyframes grain { 25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); } }
+
+    @media (max-width: 600px) {
+      main { padding-top: 48px; }
+      header h1 { font-size: 2.7rem; }
       .item-head { flex-direction: column; gap: 0; }
+      .repos { grid-template-columns: 1fr; }
+      #spectrogram { height: 120px; }
     }
+    @media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
   </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 <main>
 
   <header>
     <h1>Pedro Benevenuto Valadares</h1>
     <p class="role">Research Data Scientist · Speech &amp; Voice AI · Campinas, Brazil</p>
-    <p>I build real-time voice agents, fine-tune speech models for noisy and low-bandwidth audio, and optimize inference on CPU and GPU. Currently at Itaú's applied AI research institute (ICTI) and pursuing an M.S. in Electrical Engineering at UNICAMP.</p>
+    <figure class="spectro" aria-hidden="true">
+      <canvas id="spectrogram"></canvas>
+    </figure>
+    <p>I build real-time voice agents, fine-tune speech models for noisy and low-bandwidth audio, and optimize inference on CPU and GPU. Currently at <a href="https://www.icti.org.br/">Itaú's applied AI research institute (ICTi)</a> and pursuing an M.S. in Electrical Engineering at <a href="https://www.unicamp.br/">UNICAMP</a>.</p>
     <ul class="links">
-      <li><a href="mailto:peubene@gmail.com">Email</a></li>
+      <li><a href="mailto:p204483@dac.unicamp.br">Email</a></li>
       <li><a href="https://www.linkedin.com/in/valadares-pedro/">LinkedIn</a></li>
       <li><a href="https://github.com/Pedro1-21GW">GitHub</a></li>
       <!-- To add your CV: put cv.pdf in this folder and uncomment the line below. -->
@@ -93,12 +117,10 @@
 
   <!--
     WRITING: links to your LinkedIn posts, articles, talks.
-    Uncomment this section when you have the first one. To add more, copy one <div class="item"> block.
-    Newest first.
+    Uncomment this section when you have the first one. To add more, copy one <div class="item"> block. Newest first.
 
   <section id="writing">
     <h2>Writing &amp; posts</h2>
-
     <div class="item">
       <div class="item-head">
         <h3><a href="LINK-TO-LINKEDIN-POST">Post title</a></h3>
@@ -106,40 +128,26 @@
       </div>
       <p>One or two sentences on what the post is about.</p>
     </div>
-
   </section>
   -->
 
-  <section id="projects">
-    <h2>Projects</h2>
-
-    <!-- To add a project: copy one <div class="item"> block. -->
-    <div class="item">
-      <div class="item-head">
-        <h3><a href="https://pedro1-21gw.github.io/e2e-browser-voice-agent/">Browser voice agent lab</a></h3>
-        <span class="meta">2026 · <a href="https://github.com/Pedro1-21GW/e2e-browser-voice-agent">code</a></span>
+  <section id="repos">
+    <h2>Recent repos</h2>
+    <div class="repos" id="repo-list">
+      <!-- Shown if the GitHub API can't be reached; otherwise replaced by the live list. -->
+      <div class="repo">
+        <a class="name" href="https://github.com/Pedro1-21GW/e2e-browser-voice-agent">e2e-browser-voice-agent</a>
+        <p class="desc">A voice agent that runs (almost) entirely in the browser: speech recognition, LLM and speech synthesis on a laptop GPU through WebGPU. 1.4–2.1 s voice-to-voice on a GTX 1050 notebook GPU.</p>
+        <span class="foot"><span class="lang">HTML</span></span>
+        <span class="go"><a href="https://pedro1-21gw.github.io/e2e-browser-voice-agent/">lab</a><a href="https://pedro1-21gw.github.io/e2e-browser-voice-agent/h1-browser-libs/">demo</a><a href="https://pedro1-21gw.github.io/e2e-browser-voice-agent/wiki/">wiki</a><a href="https://pedro1-21gw.github.io/e2e-browser-voice-agent/h2-own-inference-engine/m0-kernels/">kernels</a></span>
       </div>
-      <p>A voice agent where speech recognition, the language model and speech synthesis all run in the browser, with no server. Parakeet's ternary encoder runs on WebGPU with a hand-written transducer decoder, and speculative transcription hides most of the recognition time. About 1.4–2.1 s from the end of speech to the first audio on a laptop with a GTX 1050.</p>
-      <ul class="tags"><li>WebGPU</li><li>ONNX Runtime Web</li><li>ASR</li><li>TTS</li><li>On-device LLM</li></ul>
-    </div>
-
-    <div class="item">
-      <div class="item-head">
-        <h3>EchoForge</h3>
-        <span class="meta">M.S. research · in progress</span>
+      <div class="repo">
+        <a class="name" href="https://github.com/Pedro1-21GW/echoforge">echoforge</a>
+        <p class="desc">Promptable Envs for Acoustics and Beyond</p>
+        <span class="foot"><span class="lang">Python</span></span>
       </div>
-      <p>Generates room impulse responses from text prompts in real time, combining signal processing with generative models. The goal is to give AI agents a sense of the acoustic space around them.</p>
-      <ul class="tags"><li>Room acoustics</li><li>Generative models</li><li>DSP</li></ul>
     </div>
-
-    <div class="item">
-      <div class="item-head">
-        <h3>Individualized headphone equalization</h3>
-        <span class="meta">FAPESP fellowship · 2020–2021</span>
-      </div>
-      <p>Personalized headphone equalization for binaural (3D) audio, using regularized inverse filters with automatic parameter selection to avoid audible peaks. Advised by Prof. Bruno Sanches Masiero at UNICAMP. <a href="https://bv.fapesp.br/en/bolsas/193745/individualized-equalization-of-supraaural-headphones/">Grant 20/10195-7</a>.</p>
-      <ul class="tags"><li>Filter design</li><li>Binaural audio</li></ul>
-    </div>
+    <div class="repos-note">Live from GitHub, most recently updated first.</div>
   </section>
 
   <section id="publications">
@@ -173,33 +181,42 @@
     </ul>
   </section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-
+  <section id="research">
+    <h2>Research</h2>
+    <!-- To add an entry: copy one <div class="item"> block. -->
     <div class="item">
       <div class="item-head">
-        <h3>Itaú: ICTI (applied AI research)</h3>
-        <span class="meta">2025 – now</span>
+        <h3><a href="https://github.com/Pedro1-21GW/echoforge">EchoForge</a></h3>
+        <span class="meta">M.S. research · in progress</span>
       </div>
+      <p>Generates room impulse responses from text prompts in real time, combining signal processing with generative models. The goal is to give AI agents a sense of the acoustic space around them.</p>
+      <ul class="tags"><li>Room acoustics</li><li>Generative models</li><li>DSP</li></ul>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <h3>Individualized headphone equalization</h3>
+        <span class="meta">FAPESP fellowship · 2020–2021</span>
+      </div>
+      <p>Personalized headphone equalization for binaural (3D) audio, using regularized inverse filters with automatic parameter selection to avoid audible peaks. Advised by Prof. Bruno Sanches Masiero at UNICAMP. <a href="https://bv.fapesp.br/en/bolsas/193745/individualized-equalization-of-supraaural-headphones/">Grant 20/10195-7</a>.</p>
+      <ul class="tags"><li>Filter design</li><li>Binaural audio</li></ul>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="item">
+      <div class="item-head"><h3><a href="https://www.icti.org.br/">Itaú ICTi</a> (applied AI research)</h3><span class="meta">2025 – now</span></div>
       <p class="sub">Research Data Scientist, Conversational AI &amp; Voice</p>
       <p>Research on real-time conversational voice AI: low-latency audio streaming, parameter-efficient fine-tuning of speech recognition models for noisy, narrowband audio, and inference optimization on GPU and CPU for many concurrent audio streams.</p>
       <ul class="tags"><li>ASR</li><li>PEFT</li><li>TensorRT</li><li>ONNX</li><li>GGUF</li><li>WebSockets</li></ul>
     </div>
-
     <div class="item">
-      <div class="item-head">
-        <h3>Nokia</h3>
-        <span class="meta">2025</span>
-      </div>
+      <div class="item-head"><h3>Nokia</h3><span class="meta">2025</span></div>
       <p class="sub">Machine Learning &amp; Automation Engineer</p>
       <p>Computer vision for edge and telecom use cases: segmentation, classification and object detection.</p>
     </div>
-
     <div class="item">
-      <div class="item-head">
-        <h3>Ericsson</h3>
-        <span class="meta">2024 – 2025</span>
-      </div>
+      <div class="item-head"><h3>Ericsson</h3><span class="meta">2024 – 2025</span></div>
       <p class="sub">Junior Data Scientist</p>
       <p>Time series forecasting for anomaly detection and root cause analysis across global products.</p>
     </div>
@@ -208,22 +225,135 @@
   <section id="education">
     <h2>Education</h2>
     <div class="item">
-      <div class="item-head">
-        <h3>M.S. Electrical Engineering, UNICAMP</h3>
-        <span class="meta">2026 – 2028</span>
-      </div>
+      <div class="item-head"><h3>M.S. Electrical Engineering, <a href="https://www.fee.unicamp.br/">UNICAMP</a></h3><span class="meta">2026 – 2028</span></div>
       <p class="sub">Advisor: Prof. Bruno Sanches Masiero</p>
     </div>
     <div class="item">
-      <div class="item-head">
-        <h3>B.S. Electrical Engineering, UNICAMP</h3>
-        <span class="meta">2018 – 2024</span>
-      </div>
+      <div class="item-head"><h3>B.S. Electrical Engineering, <a href="https://www.fee.unicamp.br/">UNICAMP</a></h3><span class="meta">2018 – 2024</span></div>
     </div>
   </section>
 
   <footer>© 2026 Pedro Benevenuto Valadares</footer>
-
 </main>
+
+<script>
+// ---------- Recent repos, live from the GitHub API (the static list above is the fallback)
+const LINKS = {        // direct entry points into a project, shown on its card
+  "e2e-browser-voice-agent": [["lab", "https://pedro1-21gw.github.io/e2e-browser-voice-agent/"], ["demo", "https://pedro1-21gw.github.io/e2e-browser-voice-agent/h1-browser-libs/"], ["wiki", "https://pedro1-21gw.github.io/e2e-browser-voice-agent/wiki/"], ["kernels", "https://pedro1-21gw.github.io/e2e-browser-voice-agent/h2-own-inference-engine/m0-kernels/"]],
+};
+const DESCRIPTIONS = {   // nicer descriptions than the one-liners on GitHub
+  "e2e-browser-voice-agent": "A voice agent that runs (almost) entirely in the browser: speech recognition, LLM and speech synthesis on a laptop GPU through WebGPU. 1.4–2.1 s voice-to-voice on a GTX 1050 notebook GPU.",
+};
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const month = (iso) => new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+fetch("https://api.github.com/users/Pedro1-21GW/repos?sort=pushed&per_page=30")
+  .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+  .then((repos) => {
+    const list = repos.filter((r) => !r.fork && r.name.toLowerCase() !== "pedro1-21gw.github.io").slice(0, 6);
+    if (!list.length) return;
+    document.getElementById("repo-list").innerHTML = list.map((r) => {
+      const demo = r.homepage || (r.has_pages ? `https://pedro1-21gw.github.io/${r.name}/` : null);
+      return `<div class="repo">
+        <a class="name" href="${esc(r.html_url)}">${esc(r.name)}</a>
+        <p class="desc">${esc(DESCRIPTIONS[r.name] || r.description || "")}</p>
+        <span class="foot">${r.language ? `<span class="lang">${esc(r.language)}</span>` : ""}<span>updated ${month(r.pushed_at)}</span>${r.stargazers_count ? `<span>★ ${r.stargazers_count}</span>` : ""}</span>
+        ${LINKS[r.name] ? `<span class="go">${LINKS[r.name].map(([label, url]) => `<a href="${esc(url)}">${label}</a>`).join("")}</span>`
+          : demo ? `<span class="go"><a href="${esc(demo)}">live demo</a></span>` : ""}
+      </div>`;
+    }).join("");
+  })
+  .catch(() => {});
+
+// ---------- Live spectrogram of synthetic speech
+// Each new column on the right is one moment of a made-up voice: a pitch that drifts, its harmonics
+// shaped by two moving formants (vowels), syllable on/off envelopes, and bursts of hiss (s, f, sh).
+// The picture scrolls left at a constant speed, so it changes smoothly as time goes on.
+(function spectrogram() {
+  const canvas = document.getElementById("spectrogram");
+  const ctx = canvas.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const SPEED = 60;          // CSS pixels per second (1 px per frame at 60 Hz)
+  const SIM = 0.0055;        // seconds of simulated speech per CSS pixel: ~4 s across the page, played at ~1/3 speed
+  const FMAX = 5000;         // Hz shown at the top (higher, single pixel rows would be wider than the harmonic spacing)
+  let W = 0, H = 0, dpr = 1, column, t = 0, pending = 0, last = 0;
+
+  // amber colormap: black → deep red → orange → pale yellow
+  const STOPS = [[0, 10, 8, 7], [0.25, 70, 18, 8], [0.5, 190, 70, 20], [0.75, 255, 157, 77], [1, 255, 236, 200]];
+  const LUT = new Uint8ClampedArray(256 * 3);
+  for (let i = 0; i < 256; i++) {
+    const v = i / 255;
+    let k = 0; while (k < STOPS.length - 2 && v > STOPS[k + 1][0]) k++;
+    const [a, ...ca] = STOPS[k], [b, ...cb] = STOPS[k + 1], f = (v - a) / (b - a);
+    for (let c = 0; c < 3; c++) LUT[i * 3 + c] = ca[c] + (cb[c] - ca[c]) * f;
+  }
+
+  const mel = (f) => 2595 * Math.log10(1 + f / 700);
+  const imel = (m) => 700 * (10 ** (m / 2595) - 1);
+  let rowFreq = [];
+  const gauss = (x, w) => Math.exp(-(x * x) / (2 * w * w));
+  const smooth = (x) => x * x * (3 - 2 * x);
+  // deterministic pseudo-random value per (integer step, channel) for syllable patterns
+  const hash = (n, c) => { const x = Math.sin(n * 127.1 + c * 311.7) * 43758.5453; return x - Math.floor(x); };
+  const at = (time, rate, c) => { const n = Math.floor(time * rate), f = smooth(time * rate - n); return hash(n, c) * (1 - f) + hash(n + 1, c) * f; };
+
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  function drawColumn(x) {
+    const phrase = smooth(clamp01((at(t, 0.45, 1) - 0.22) * 5));       // speaking vs. pausing, smooth in and out
+    const syll = smooth(clamp01((at(t, 4.5, 7) - 0.28) * 2.2));         // ~4 syllables/s with soft onsets
+    const voiced = phrase * syll;
+    const f0 = 110 + 50 * at(t, 0.9, 2) + 6 * Math.sin(t * 9);         // pitch contour with a little vibrato
+    const F1 = 320 + 480 * at(t, 3.2, 3), F2 = 950 + 1350 * at(t, 2.6, 4), F3 = 2500 + 350 * at(t, 1.4, 5);
+    const hiss = phrase * (1 - syll) * smooth(clamp01((at(t, 3.6, 6) - 0.5) * 3));   // s / f / sh between vowels
+    const img = column.data;
+    for (let y = 0; y < H; y++) {
+      const f = rowFreq[y];
+      let e = 0;
+      if (voiced > 0.01) {
+        const k = Math.max(1, Math.round(f / f0)), d = f - k * f0;       // distance to the nearest harmonic
+        const harm = gauss(d, 9 + 0.006 * f);
+        const env = 0.015 + gauss(f - F1, 120) + 0.6 * gauss(f - F2, 170) + 0.25 * gauss(f - F3, 240);
+        e += voiced * harm * env * Math.exp(-f / 1300);                 // energy falls off with frequency
+      }
+      if (hiss > 0.01) e += hiss * 0.005 * smooth(clamp01((f - 2000) / 3000)) * (0.4 + 0.6 * Math.random());
+      e += 0.00035 * (0.5 + Math.random());                             // faint noise floor
+      const db = 10 * Math.log10(e + 1e-5);                             // ≈ -36 dB (floor) .. 0 dB (formant peaks)
+      const v = Math.max(0, Math.min(255, ((db + 42) / 42) * 255)) | 0;
+      const i = y * 4;
+      img[i] = LUT[v * 3]; img[i + 1] = LUT[v * 3 + 1]; img[i + 2] = LUT[v * 3 + 2]; img[i + 3] = 255;
+    }
+    ctx.putImageData(column, x, 0);
+  }
+
+  function resize() {
+    dpr = Math.min(2, devicePixelRatio || 1);
+    W = Math.round(canvas.clientWidth * dpr); H = Math.round(canvas.clientHeight * dpr);
+    if (!W || !H) return;
+    canvas.width = W; canvas.height = H;
+    column = ctx.createImageData(1, H);
+    const mTop = mel(FMAX);
+    rowFreq = Array.from({ length: H }, (_, y) => imel(mTop * (1 - y / (H - 1))));   // mel scale, low notes at the bottom
+    const step = SIM / dpr;
+    t -= W * step;
+    for (let x = 0; x < W; x++) { drawColumn(x); t += step; }                     // fill the screen once
+  }
+
+  function frame(now) {
+    const dt = Math.min(0.1, (now - (last || now)) / 1000); last = now;
+    pending += dt * SPEED * dpr;
+    const n = Math.floor(pending);
+    if (n > 0 && W) {
+      pending -= n;
+      ctx.drawImage(canvas, n, 0, W - n, H, 0, 0, W - n, H);                     // scroll left
+      for (let i = n; i > 0; i--) { t += SIM / dpr; drawColumn(W - i); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  let lastWidth = canvas.clientWidth;
+  addEventListener("resize", () => { if (canvas.clientWidth !== lastWidth) { lastWidth = canvas.clientWidth; resize(); } });
+  if (!reduce) requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
