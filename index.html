@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedro Benevenuto Valadares</title>
+  <meta name="description" content="Research Data Scientist in speech and voice AI. Real-time voice agents, speech model fine-tuning, and inference optimization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfbf9;
+      --text: #1c1c1a;
+      --muted: #6b6b66;
+      --line: #e6e5e0;
+      --accent: #c2410c;
+      --tag-bg: #f1efe9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141413;
+        --text: #ececea;
+        --muted: #9b9b95;
+        --line: #2a2a28;
+        --accent: #fb923c;
+        --tag-bg: #232321;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 720px; margin: 0 auto; padding: 64px 20px 96px; }
+    a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+    header h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+    header .role { color: var(--muted); margin: 4px 0 20px; }
+    header p { margin: 0 0 20px; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 0; list-style: none; font-size: 0.95rem; }
+
+    section { margin-top: 56px; }
+    h2 {
+      font: 400 0.8rem/1 "JetBrains Mono", ui-monospace, monospace;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin: 0 0 20px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--line);
+    }
+    .item { margin-bottom: 24px; }
+    .item:last-child { margin-bottom: 0; }
+    .item-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+    .item h3 { font-size: 1rem; font-weight: 600; margin: 0; }
+    .meta { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+    .sub { color: var(--muted); font-size: 0.95rem; margin: 2px 0 0; }
+    .item p { margin: 6px 0 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 0; list-style: none; }
+    .tags li { background: var(--tag-bg); font-size: 0.8rem; padding: 2px 8px; border-radius: 4px; color: var(--muted); }
+
+    .pubs { list-style: none; padding: 0; margin: 0; }
+    .pubs li { margin-bottom: 18px; }
+    .pubs .title { font-weight: 500; }
+    .pubs .authors, .pubs .venue { color: var(--muted); font-size: 0.92rem; }
+    .pubs .me { color: var(--text); font-weight: 500; }
+
+    footer { margin-top: 72px; color: var(--muted); font-size: 0.85rem; }
+
+    @media (max-width: 560px) {
+      main { padding-top: 40px; }
+      .item-head { flex-direction: column; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Pedro Benevenuto Valadares</h1>
+    <p class="role">Research Data Scientist · Speech &amp; Voice AI · Campinas, Brazil</p>
+    <p>I build real-time voice agents, fine-tune speech models for noisy and low-bandwidth audio, and optimize inference on CPU and GPU. Currently at Itaú's applied AI research institute (ICTI) and pursuing an M.S. in Electrical Engineering at UNICAMP.</p>
+    <ul class="links">
+      <li><a href="mailto:peubene@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/pedro-benevenuto-valadares">LinkedIn</a></li>
+      <li><a href="https://github.com/Pedro1-21GW">GitHub</a></li>
+      <!-- To add your CV: put cv.pdf in this folder and uncomment the line below. -->
+      <!-- <li><a href="cv.pdf">CV (PDF)</a></li> -->
+    </ul>
+  </header>
+
+  <!--
+    WRITING: links to your LinkedIn posts, articles, talks.
+    Uncomment this section when you have the first one. To add more, copy one <div class="item"> block.
+    Newest first.
+
+  <section id="writing">
+    <h2>Writing &amp; posts</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <h3><a href="LINK-TO-LINKEDIN-POST">Post title</a></h3>
+        <span class="meta">Oct 2026</span>
+      </div>
+      <p>One or two sentences on what the post is about.</p>
+    </div>
+
+  </section>
+  -->
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <!-- To add a project: copy one <div class="item"> block. -->
+    <div class="item">
+      <div class="item-head">
+        <h3>EchoForge</h3>
+        <span class="meta">M.S. research · in progress</span>
+      </div>
+      <p>Generates room impulse responses from text prompts in real time, combining signal processing with generative models. The goal is to give AI agents a sense of the acoustic space around them.</p>
+      <ul class="tags"><li>Room acoustics</li><li>Generative models</li><li>DSP</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Individualized headphone equalization</h3>
+        <span class="meta">FAPESP fellowship · 2020–2021</span>
+      </div>
+      <p>Personalized headphone equalization for binaural (3D) audio, using regularized inverse filters with automatic parameter selection to avoid audible peaks. Advised by Prof. Bruno Sanches Masiero at UNICAMP. <a href="https://bv.fapesp.br/en/bolsas/193745/individualized-equalization-of-supraaural-headphones/">Grant 20/10195-7</a>.</p>
+      <ul class="tags"><li>Filter design</li><li>Binaural audio</li></ul>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <ul class="pubs">
+      <li>
+        <a class="title" href="https://doi.org/10.1007/978-3-032-39898-7_3">Neural Speech Enhancement for Conversational AI over Narrowband Telephony: A Benchmark in Brazilian Portuguese</a><br>
+        <span class="authors"><span class="me">P. B. Valadares</span> et al.</span><br>
+        <span class="venue">BRACIS 2026, Springer LNAI</span>
+      </li>
+      <li>
+        <a class="title" href="https://arxiv.org/abs/2609.23807">Synthetic Speech Detection in Brazilian Portuguese through Accent-Related Features</a><br>
+        <span class="authors">P. H. L. Leite, <span class="me">P. B. Valadares</span>, L. W. P. Biscainho</span><br>
+        <span class="venue">IEEE SLT 2026 (accepted)</span>
+      </li>
+      <li>
+        <a class="title" href="https://arxiv.org/abs/2605.30457">Extracting Accent Features in Spoken Brazilian Portuguese without Sociolinguistic Labels</a><br>
+        <span class="authors">P. H. L. Leite, <span class="me">P. B. Valadares</span>, L. W. P. Biscainho</span><br>
+        <span class="venue">SBrT 2026 (accepted)</span>
+      </li>
+      <li>
+        <a class="title" href="https://arxiv.org/abs/2209.13458">PCA-based Channel Estimation for MIMO Communications</a><br>
+        <span class="authors">J. A. Soares, K. Mayer, <span class="me">P. B. Valadares</span>, D. Arantes</span><br>
+        <span class="venue">SBrT 2022</span>
+      </li>
+      <li>
+        <a class="title" href="https://doi.org/10.5753/reic.2022.2766">Song Emotion Recognition: A Performance Comparison Between Audio Features and Artificial Neural Networks</a><br>
+        <span class="authors"><span class="me">P. B. Valadares</span>, K. G. Rosero Jácome, A. N. dos Santos, B. S. Masiero</span><br>
+        <span class="venue">REIC, vol. 20, no. 4, 2022</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Itaú: ICTI (applied AI research)</h3>
+        <span class="meta">2025 – now</span>
+      </div>
+      <p class="sub">Research Data Scientist, Conversational AI &amp; Voice</p>
+      <p>Prototyping real-time voice agents and speech models, then handing the most promising ones to product teams. Worked on the voice agent MVP in the Itaú Super App and the speech model behind Laranjinha+, a voice assistant on Itaú payment terminals.</p>
+      <ul class="tags"><li>ASR</li><li>PEFT</li><li>TensorRT</li><li>ONNX</li><li>GGUF</li><li>WebSockets</li></ul>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Nokia</h3>
+        <span class="meta">2025</span>
+      </div>
+      <p class="sub">Machine Learning &amp; Automation Engineer</p>
+      <p>Computer vision for edge and telecom use cases: segmentation, classification and object detection.</p>
+    </div>
+
+    <div class="item">
+      <div class="item-head">
+        <h3>Ericsson</h3>
+        <span class="meta">2024 – 2025</span>
+      </div>
+      <p class="sub">Junior Data Scientist</p>
+      <p>Time series forecasting for anomaly detection and root cause analysis across global products.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-head">
+        <h3>M.S. Electrical Engineering, UNICAMP</h3>
+        <span class="meta">2026 – 2028</span>
+      </div>
+      <p class="sub">Advisor: Prof. Bruno Sanches Masiero</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <h3>B.S. Electrical Engineering, UNICAMP</h3>
+        <span class="meta">2018 – 2024</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Pedro Benevenuto Valadares</footer>
+
+</main>
+</body>
+</html>
